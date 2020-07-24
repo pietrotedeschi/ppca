@@ -1,5 +1,9 @@
 ## PPCA: Privacy-Preserving Collision Avoidance for Autonomous Unmanned Aerial Vehicles
-`PPCA` is a lightweight, distributed, and privacy-preserving scheme for autonomous UAVs. It integrates and turns privacy-preserving proximity testing solutions, traditionally adopted in online geo-social networks, into a real-time interactive approach to detect co-location among moving entities, and to avoid approaching collisions.
+`PPCA` is a lightweight, distributed, and privacy-preserving privacy-preserving <b>collision avoidance</b> scheme for autonomous UAVs. It integrates and turns privacy-preserving proximity testing solutions, traditionally adopted in online geo-social networks, into a real-time interactive approach to detect co-location among moving entities, and to avoid approaching collisions.
+
+<p align="center">
+     <img alt="Setup Phase" src="./img/scenario.png" width="500">
+</p>
 
 ## Formal verification with ProVerif
 The security properties of `PPCA` have been verified formally and experimentally by using the open-source tool <a href="https://prosecco.gforge.inria.fr/personal/bblanche/proverif/">ProVerif 2.01</a>, demonstrating enhanced security protection with respect to state-of-the-art approaches.
