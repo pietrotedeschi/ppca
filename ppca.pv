@@ -1,0 +1,165 @@
+(*
+PPCA - Privacy-Preserving Collision Avoidance for Autonomous Unmanned Aerial Vehicles
+Authors: Pietro Tedeschi, Savio Sciancalepore and Roberto Di Pietro
+Division of Information and Computing Technology (ICT)
+College of Science and Engineering (CSE)
+Hamad Bin Khalifa University (HBKU), Doha, Qatar
+{ptedeschi, ssciancalepore, rdipietro}@hbku.edu.qa
+*)
+
+(* ./proverif ppca.pv *)
+
+(*Dolev-Yao model Open Channel*)
+(*Channel between drone A and drone B*)
+free c:channel. 
+
+
+(* The attacker should not have knowledge of the actual location (secret).
+But, the secret is still "weak": it does not have many possible states. 
+For example, a simple '(Lat, Lon)' coordinate, even when encrypted, has only one possible state. 
+So even if the actual location is secret, it can possibly be guessed. 
+'weaksecret loc' indicates that loc is a private location, and the attacker should not know it, 
+but nonetheless, it's possible to guess easily. *)
+free locA: bitstring [private].
+weaksecret locA.
+free locB: bitstring [private].
+weaksecret locB.
+
+(* Types, Constants and Variables *)
+type radius.
+type height.
+type angle.
+type ilist.
+type origin.
+type nonce.
+type seed.
+type ts.
+
+(* Elliptic Curve Generator Point *)
+type G.
+const g: G [data].
+
+(* Public and Private Key *)
+type pkey.
+type skey.
+
+(* Auxiliary Functions *)
+fun map(bitstring, origin, radius, height, angle):bitstring.
+fun add(bitstring, nonce):bitstring.
+fun add_bb(bitstring, bitstring):bitstring.
+
+fun dif(nonce, bitstring):bitstring.
+fun dif_bb(bitstring, bitstring):bitstring.
+
+fun gen(nonce, G):bitstring.
+fun mul(bitstring, pkey):bitstring.
+fun mul_nb(nonce, bitstring):bitstring.
+fun mul_sb(skey, bitstring):bitstring.
+
+fun append_list(pkey, bitstring, bitstring):ilist.
+
+(* Public key Cryptography *)
+fun pk(skey): pkey.
+
+(* Signature functions*)
+fun sign(bitstring, skey): bitstring.
+reduc forall m: bitstring, k: skey; getmess(sign(m, k)) = m.
+reduc forall m: bitstring, k: skey; checksign(sign(m, k), pk(k)) = m.
+
+(*Events*)
+event end_PPCA_B(pkey).
+event end_PPCA_A(pkey).
+
+(* A formal query, specifying the attacker can't ever be leaked the
+actual location during the protocol. *)
+query attacker(locA).
+query attacker(locB).
+
+(*Verify the non interference property for the location A and B*)
+(* noninterf locA.
+noninterf locB. *)
+
+(* The process for Drone A*)
+let droneA (skA:skey, pA:pkey) = 
+  (* Preparation *)
+  new RA: radius;
+  new hA: height;
+  new aA: angle;
+  new vA: nonce;
+  new Va: ts;
+  new UA: ilist;
+  new OA: origin;
+  
+  let posA  = map(locA, OA, RA, hA, aA) in
+  let EA1   = gen(vA, g) in
+  let EA2   = mul(add(posA, vA), pA) in
+
+  let sigmA = sign((EA1, EA2, UA, OA, RA, hA, aA, Va, pA), skA) in
+  out(c, ((EA1, EA2, UA, OA, RA, hA, aA, Va, pA), sigmA));
+
+  (* Comment the previous "let sigmA" and "out" and uncomment the following.
+     Here we can demonstrate the leakage of the location (via bruteforce) when 
+     the nonce is not taken into account. *)
+  (* let sigmA = sign((EA1, mul(posA, pA), UA, OA, RA, hA, aA, Va, pA), skA) in
+  out(c, ((EA1, mul(posA, pA), UA, OA, RA, hA, aA, Va, pA), sigmA)); *)
+
+  in(c, ((EB1:bitstring, EB2:bitstring, UBA1:bitstring, UBA2:bitstring, OB:origin, RB:radius, hB:height, aB:angle, Vb:ts, pB:pkey), sigB:bitstring));
+  
+  let check = checksign(sigB, pB) in
+  let mAB = dif_bb(UBA2, mul_sb(skA, UBA1)) in
+  
+  event end_PPCA_B(pB).
+
+
+(* The process for Drone B*)
+let droneB (skB:skey, pB:pkey) = 
+  (* Preparation *)
+  new RB: radius;
+  new hB: height;
+  new aB: angle;
+  new vB: nonce;
+  new Vb: ts;
+  new OB: origin;
+  new UB: ilist;
+  new sB: nonce;
+  new qB: nonce;
+
+  in(c, ((EA1:bitstring, EA2:bitstring, UA:ilist, OA:origin, RA:radius, hA:height, aA:angle, Va:ts, pA:pkey), sigA:bitstring));
+
+  let check = checksign(sigA, pA) in
+
+  let posBA = map(locB, OA, RA, hA, aA) in
+  let UBA1 = add_bb(mul_nb(sB, EA1), gen(qB, g)) in
+  let UBA2 = add_bb(mul_nb(sB, EA2), mul(dif(qB, mul_nb(sB, posBA)),pA)) in
+  
+  let UB = append_list(pA, UBA1, UBA2) in
+
+  let posB  = map(locB, OB, RB, hB, aB) in
+  let EB1   = gen(vB, g) in
+  let EB2   = mul(add(posB, vB), pB) in
+  
+  let sigmB = sign((EB1, EB2, UB, OB, RB, hB, aB, Vb, pB), skB) in
+  out(c, ((EB1, EB2, UBA1, UBA2, OB, RB, hB, aB, Vb, pB), sigmB));
+
+  (* Comment the previous "let sigmB" and "out" and uncomment the following.
+     Here we can demonstrate the leakage of the location (via bruteforce) when 
+     the nonce is not taken into account. *)
+  (* let sigmB = sign((EB1, mul(posB, pB), UB, OB, RB, hB, aB, Vb, pB), skB) in
+  out(c, ((EB1, mul(posB, pB), UB, OB, RB, hB, aB, Vb, pB), sigmB)); *)
+
+  event end_PPCA_A(pA).
+
+  process
+    new xA: skey;
+    let XA = pk(xA) in
+    new xB: skey;
+    let XB = pk(xB) in
+    ((!droneA(xA, XA)) | (!droneB(xB, XB)))
+
+
+(* Verification summary:
+Weak secret locA is true.
+Weak secret locB is true.
+Query not attacker(locA[]) is true.
+Query not attacker(locB[]) is true.
+*)
