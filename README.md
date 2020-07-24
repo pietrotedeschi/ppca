@@ -13,7 +13,7 @@ Further, in order to verify that the location is a strong secret (i.e. the attac
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-# Developers
+## Developers
 - Pietro Tedeschi        (<ptedeschi@hbku.edu.qa>)<br />
 - Savio Sciancalepore    (<ssciancalepore@hbku.edu.qa>)<br />
 - Roberto Di Pietro      (<rdipietro@hbku.edu.qa>)<br />
