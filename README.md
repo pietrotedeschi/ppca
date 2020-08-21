@@ -5,6 +5,8 @@
      <img alt="Setup Phase" src="./img/scenario.png" width="800">
 </p>
 
+The details will be provided in the paper.
+
 ## Formal verification with ProVerif
 The security properties of `PPCA` have been verified formally and experimentally by using the open-source tool <a href="https://prosecco.gforge.inria.fr/personal/bblanche/proverif/">ProVerif 2.01</a>, demonstrating enhanced security protection with respect to state-of-the-art approaches.
 
