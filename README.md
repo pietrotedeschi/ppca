@@ -12,7 +12,7 @@ In order to test the security properties, download the file <a href="ppca.pv">pp
 Further, in order to verify that the location is a strong secret (i.e. the attacker cannot launch offline guessing attacks on the location value), please follow the guidelines inside the code.
 
 <p align="center">
-  <img src="./img/proverif.png" alt="PPCA" width="700">
+  <img src="./img/proverif.png" alt="PPCA" width="900">
 </p>
 
 ## Contributing
