@@ -2,7 +2,7 @@
 `PPCA` is a lightweight, distributed, and privacy-preserving privacy-preserving <b>collision avoidance</b> scheme for autonomous UAVs. It integrates and turns privacy-preserving proximity testing solutions, traditionally adopted in online geo-social networks, into a real-time interactive approach to detect co-location among moving entities, and to avoid approaching collisions.
 
 <p align="center">
-     <img alt="Setup Phase" src="./img/scenario.png" width="500">
+     <img alt="Setup Phase" src="./img/scenario.png" width="800">
 </p>
 
 ## Formal verification with ProVerif
@@ -12,7 +12,7 @@ In order to test the security properties, download the file <a href="ppca.pv">pp
 Further, in order to verify that the location is a strong secret (i.e. the attacker cannot launch offline guessing attacks on the location value), please follow the guidelines inside the code.
 
 <p align="center">
-  <img src="./img/proverif.png" alt="PPCA" width="900">
+  <img src="./img/proverif.png" alt="PPCA" width="700">
 </p>
 
 ## Contributing
