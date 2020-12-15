@@ -7,6 +7,10 @@
 
 The details will be provided in the paper.
 
+## Demo Video
+
+[![PPCA](https://img.youtube.com/vi/2LW_ZFk6ZS0/0.jpg)](https://www.youtube.com/watch?v=2LW_ZFk6ZS0)
+
 ## Formal verification with ProVerif
 The security properties of `PPCA` have been verified formally and experimentally by using the open-source tool <a href="https://prosecco.gforge.inria.fr/personal/bblanche/proverif/">ProVerif 2.01</a>, demonstrating enhanced security protection with respect to state-of-the-art approaches.
 
