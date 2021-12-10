@@ -7,10 +7,6 @@
 
 The details will be provided in the paper.
 
-## Demo Video
-
-[![PPCA](https://img.youtube.com/vi/2LW_ZFk6ZS0/0.jpg)](https://www.youtube.com/watch?v=2LW_ZFk6ZS0)
-
 ## Formal verification with ProVerif
 The security properties of `PPCA` have been verified formally and experimentally by using the open-source tool <a href="https://prosecco.gforge.inria.fr/personal/bblanche/proverif/">ProVerif 2.01</a>, demonstrating enhanced security protection with respect to state-of-the-art approaches.
 
@@ -20,6 +16,10 @@ Further, in order to verify that the location is a strong secret (i.e. the attac
 <p align="center">
   <img src="./img/proverif.png" alt="PPCA" width="700">
 </p>
+
+## Demo Video
+
+[![PPCA](https://img.youtube.com/vi/2LW_ZFk6ZS0/0.jpg)](https://www.youtube.com/watch?v=2LW_ZFk6ZS0)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
