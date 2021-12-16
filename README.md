@@ -25,11 +25,12 @@ Further, in order to verify that the location is a strong secret (i.e. the attac
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
 ## Developers
-- Pietro Tedeschi        (<ptedeschi@hbku.edu.qa>)<br />
-- Savio Sciancalepore    (<s.sciancalepore@tue.nl>)<br />
-- Roberto Di Pietro      (<rdipietro@hbku.edu.qa>)<br />
-Division of Information and Computing Technology (ICT), College of Science and Engineering (CSE)<br />Hamad Bin Khalifa University (HBKU), Doha, Qatar<br />
-Security Group - Faculty of Mathematics and Computer Science, Eindhoven University of Technology (TU/e), Eindhoven, The Netherlands
+(+) Pietro Tedeschi        (<ptedeschi@hbku.edu.qa>)<br />
+(^) Savio Sciancalepore    (<s.sciancalepore@tue.nl>)<br />
+(+) Roberto Di Pietro      (<rdipietro@hbku.edu.qa>)<br />
+
+(+) Division of Information and Computing Technology (ICT), College of Science and Engineering (CSE)<br />Hamad Bin Khalifa University (HBKU), Doha, Qatar<br />
+(^) Security Group - Faculty of Mathematics and Computer Science, Eindhoven University of Technology (TU/e), Eindhoven, The Netherlands
 
 ## License
 `PPCA` is released under the GNU General Public License v3.0 <a href="LICENSE">license</a>.
