@@ -29,7 +29,7 @@ Pull requests are welcome. For major changes, please open an issue first to disc
 (^) Savio Sciancalepore    (<s.sciancalepore@tue.nl>)<br />
 (+) Roberto Di Pietro      (<rdipietro@hbku.edu.qa>)<br />
 
-(+) Division of Information and Computing Technology (ICT), College of Science and Engineering (CSE), Hamad Bin Khalifa University (HBKU), Doha, Qatar
+(+) Division of Information and Computing Technology (ICT), College of Science and Engineering (CSE), Hamad Bin Khalifa University (HBKU), Doha, Qatar<br />
 (^) Security Group - Faculty of Mathematics and Computer Science, Eindhoven University of Technology (TU/e), Eindhoven, The Netherlands
 
 ## License
