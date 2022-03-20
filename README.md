@@ -5,7 +5,7 @@
      <img alt="Setup Phase" src="./img/scenario.png" width="800">
 </p>
 
-The details will be provided in the paper.
+The details are provided in the <a href="https://ieeexplore.ieee.org/document/9736583">paper</a>, accepted and published by the prestigious IEEE Transactions on Dependable and Secure Computing.
 
 ## Formal verification with ProVerif
 The security properties of `PPCA` have been verified formally and experimentally by using the open-source tool <a href="https://prosecco.gforge.inria.fr/personal/bblanche/proverif/">ProVerif 2.01</a>, demonstrating enhanced security protection with respect to state-of-the-art approaches.
